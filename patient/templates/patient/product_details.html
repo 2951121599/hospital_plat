@@ -1,0 +1,318 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    信息详情页
+{% endblock %}
+{% block css %}
+    <link href="../static/css/index.css" rel="Stylesheet"/>
+    <link href="../static/css/animate.css" rel="Stylesheet"/>
+    <link href="{% static 'css/patient/pro_details.css' %}" rel="Stylesheet"/>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/products.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <!--产品预览-->
+    <div id="shop_detail" data-id="">
+        <!-- 左侧-->
+        <div id="preview" class="lf">
+            <div id="mediumDiv">
+                <img id="mImg" src="{% static 'picture/weishengsu.jpg' %}">
+            </div>
+
+        </div>
+        <!-- 右侧-->
+        <div class="right_detail lf">
+            <!-- 商品名称-->
+            <h1></h1>
+            <!--<h1></h1>-->
+            <!-- 商品全称-->
+            <h3></h3>
+            <!-- <h3></h3>-->
+            <!-- 价格部分-->
+            <div class="price">
+                <div id="pro_price"><b>维生素C售价：</b><span>¥23</span></div>
+                <div class="promise">
+                    <b>服务承诺：</b>
+                    <span>*退货补运费</span>
+                    <span>*30天无忧退货</span>
+                    <span>*48小时快速退款</span>
+                    <span>*72小时发货</span>
+                </div>
+            </div>
+            <!-- 参数部分 客服-->
+            <p class="parameter">
+                <b>客服：</b>
+                <span class="connect">15915915915</span>
+            </p>
+            <p class="parameter">
+                <b>店铺信息：</b>
+                <span class="connect">维生素之家</span>
+            </p>
+            <!-- 规格-->
+            <p class="parameter">
+                <b>药品规格：</b>
+                <span class="connect">一瓶60片装</span>
+            </p>
+
+            <!-- 未选择规格，颜色时状态-->
+            <div class="message"></div>
+            <!-- 数量-->
+            <p class="accountChose">
+                <s>数量：</s>
+                <button class="numberMinus">-</button>
+                <input type="text" value="1" class="number" id="buy-num" readOnly>
+                <button class="numberAdd">+</button>
+            </p>
+
+
+            <!-- 购买部分-->
+            <div class="shops">
+                <a href="{% url 'patient:erweima' %}" class="buy lf" id="buy_now">立即购买</a>
+                <a href="{% url 'patient:cart' %}" class="shop lf" id="add_cart"><img
+                        src="../static/images/product_detail/product_detail_img7.png"
+                        alt=""/>加入购物车</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block downjs %}
+    <script>
+        (function ($) {
+            $.getUrlParam = function (name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return r;
+                return null;
+            }
+
+            var skuid = $.getUrlParam('skuid')[2]
+
+            $.ajax({
+                type: 'get',
+                url: baseUrl + '/v1/goods/detail/' + skuid + '/',
+                success: function (result) {
+                    var IMG_URL = result.base_url
+                    $('#nav_detail').html(
+                        '<h5><a href="index.html">首页</a>  <a href="product_list.html?catalog_id=' +
+                        result.data.catalog_id + '">' + result.data.catalog_name + '</a>' +
+                        '  >  ' + result.data.name);
+                    $('#mImg').attr('src', IMG_URL + result.data.image);
+                    $('.right_detail').children('h1').html(result.data.name);
+                    $('.right_detail').children('h3').html(result.data.caption);
+                    $('#pro_price').children('span').html(result.data.price);
+
+
+                    $('#shop_detail').attr('data-id', result.data.spu);
+
+                    var html = '';
+                    var attr_names = result.data.sku_sale_attr_names;
+                    var attr_id = result.data.sku_sale_attr_id;
+                    var sale_attr_id = result.data.sku_sale_attr_val_id;
+                    var all_sale_attr_id = result.data.sku_all_sale_attr_vals_id;
+                    var all_attr_names = result.data.sku_all_sale_attr_vals_name;
+                    for (var i = 0; i < attr_names.length; i++) {
+                        html += '<p class="style"><s class="spu_name" data-id=' + attr_id[i] + '>' + attr_names[i] + '：</s>'
+                        for (var j = 0; j < all_attr_names[attr_id[i]].length; j++) {
+                            if (sale_attr_id[i] == all_sale_attr_id[attr_id[i]][j]) {
+                                html += '<input type="button" data-id=' + all_sale_attr_id[attr_id[i]][j] + ' class="spu_check spu_value l' + i + '" value=' + all_attr_names[attr_id[i]][j] + ' title=' + all_attr_names[attr_id[i]][j] + ' />'
+                            } else {
+                                html += '<input type="button" data-id=' + all_sale_attr_id[attr_id[i]][j] + ' class="spu_value l' + i + '" value=' + all_attr_names[attr_id[i]][j] + ' title=' + all_attr_names[attr_id[i]][j] + ' />'
+                            }
+                        }
+                        html += '</p>'
+                    }
+                    $('#sku').html(html)
+
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            }).then(() => {
+                $('.l0,.l1').click(function () {
+
+                    $(this).addClass("spu_check");
+                    $(this).siblings().removeClass("spu_check");
+                    var attrs = $('.spu_name');
+                    var attr_checks = $('.spu_check');
+                    var data = {
+                        spuid: parseInt($('#shop_detail').attr('data-id')),
+                    };
+                    for (var i = 0; i < attrs.length; i++) {
+                        data[attrs[i].getAttribute('data-id')] = parseInt(attr_checks[i].getAttribute('data-id'))
+                    }
+                    $.ajax({
+                        type: "post",
+                        url: baseUrl + '/v1/goods/sku/',
+                        beforeSend: function (request) {
+                            request.setRequestHeader("authorization", localStorage.getItem('dashop_token'))
+                        },
+                        data: JSON.stringify(data),
+                        success: function (data) {
+                            var result = data;
+                            if (result.code == 200) {
+                                alert('product_details.html?skuid=' + result.data);
+                                location.href = 'product_details.html?skuid=' + result.data
+                            } else {
+                                alert(result.error);
+                                history.go(0)
+                            }
+                        },
+                        error: function (data) {
+                            alert("系统异常！");
+                        }
+                    });
+
+                });
+
+                /**选择商品进行添加 悬停效果**/
+                $(".avenge").mouseover(function () {
+                    $(this).css({
+                        "border": "1px solid #997679",
+                        "color": "#997679"
+                    });
+                }).mouseout(function () {
+                    $(this).css({
+                        "border": "1px solid #666",
+                        "color": "#666"
+                    })
+                })
+            });
+            var n = $("#buy-num").val() * 1;
+            $(".numberMinus").click(function () {
+                if (n > 1) {
+                    $("#buy-num").val(n -= 1);
+                }
+            });
+            $(".numberAdd").click(function () {
+                $("#buy-num").val(n += 1);
+            });
+
+
+            $("#add_cart").click(function (e) {
+                e.preventDefault();
+                $(".modal").show();
+                $(".modal_information span").html("是否将您的宝贝加入购物车");
+
+
+                $('.no').click(function () {
+                    $('.modal').hide();
+                })
+                $('.yes').click(function () {
+                    var username = window.localStorage.getItem('dashop_user');
+                    if (username) {
+                        $.ajax({
+                            type: "post",
+                            url: baseUrl + '/v1/carts/' + username,
+                            beforeSend: function (request) {
+                                request.setRequestHeader("authorization", localStorage.getItem('dashop_token'))
+                            },
+                            data: JSON.stringify({
+                                sku_id: skuid,
+                                count: $("#buy-num").val()
+                            }),
+                            success: function (data) {
+                                var result = data;
+                                if (result.code == 200) {
+                                    console.log(result.data)
+                                    window.localStorage.setItem('dashop_count', result.data.length)
+
+                                    alert("添加购物车成功！");
+                                    location.reload()
+                                } else {
+                                    alert(result.error);
+                                    location.reload()
+
+                                }
+
+                            },
+                            error: function (data) {
+                                alert("系统异常！");
+                            }
+                        });
+                    } else {
+                        var data = []
+
+                        function getData() {
+                            var nameArr = [];
+                            $(".spu_name").each(function () {
+                                nameArr.push($(this).html());
+                            });
+                            var valueArr = [];
+                            $(".spu_value").each(function () {
+                                if ($(this).hasClass('spu_check')) {
+                                    valueArr.push($(this).val());
+                                }
+                            });
+                            var sku_data = {
+                                id: skuid,
+                                count: $("#buy-num").val(),
+                                name: $('.right_detail').children('h3').html(),
+                                default_image_url: $('#mImg').attr('src').replace('../static/media/', ''),
+                                price: parseInt($('#pro_price').children('span').html()),
+                                selected: true,
+                                sku_sale_attr_name: nameArr,
+                                sku_sale_attr_val: valueArr
+                            };
+                            console.log(data)
+                            data.push(sku_data)
+                            console.log(data)
+
+                        }
+
+                        function addData(sku_data) {
+                            var oldData = JSON.parse(window.localStorage.getItem('cart'));
+                            console.log(oldData)
+                            var result = '';
+                            if (oldData) {
+                                for (var i = 0; i < oldData.length; i++) {
+                                    if (oldData[i].id == sku_data[0].id) {
+                                        oldData[i].count = parseInt(oldData[i].count) + parseInt(sku_data[0].count);
+                                        console.log(oldData[i].count)
+                                        result = oldData
+                                    } else {
+                                        result = oldData.concat(sku_data)
+                                    }
+                                }
+                            } else {
+                                result = sku_data
+                            }
+                            window.localStorage.setItem('cart', JSON.stringify(result))
+
+                        }
+
+                        function start() {
+                            getData();
+                            addData(data);
+                            alert("离线添加购物车成功！");
+                            location.reload();
+                            $('.model').hide();
+
+                        }
+
+                        // setTimeout(start,1000);
+                        start();
+                    }
+
+                })
+            })
+            $("#buy_now").click(function () {
+                var sku_id = $.getUrlParam("skuid")[2]
+                var buy_num = $("#buy-num").val()
+                console.log(sku_id)
+                console.log(buy_num)
+                window.location.href = "orderConfirm.html?sku_id=" + sku_id + "&buy_num=" + buy_num
+            });
+        })(jQuery);
+
+    </script>
+    <!-- 加载js -->
+    <script src="{% static 'js/focus.js' %}"></script>
+    <script>
+        //调用获取焦点的函数
+        getFocus($("#l3 a"))
+    </script>
+{% endblock %}

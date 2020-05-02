@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    购药
+{% endblock %}
+{% block css %}
+    <style>
+        h2 {
+            padding-left: 65%;
+            margin-top: 4%;
+        }
+
+        input {
+            width: 120px;
+            font-size: 22px;
+            border-radius: 5px;
+        }
+
+        body {
+            background: url("../../../static/picture/medicine.png") no-repeat center center fixed;
+            background-size: 100%;
+            font-size: 28px;
+        }
+
+        .bg {
+            width: 500px;
+            height: 300px;
+            margin-top: 5%;
+            margin-left: 50%;
+            background-color: rgba(142, 229, 238, 0.5);
+        }
+
+        .btn input { /*设置两个按钮的宽高、边距及边框样式*/
+            width: 130px;
+            height: 50px;
+            background: #87CEFF;
+            border-radius: 20px;
+            font-size: 18px;
+        }
+
+        .btn {
+            margin-left: 83%;
+        }
+
+        .b1, .b2 {
+            margin-left: 15%;
+            padding-top: 10%;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <h2>取药</h2>
+    <form>
+        <div class="bg">
+            <div class="b1">名称：<input value="{{ name1 }}" type="text" readonly></div>
+            <div class="b2">请输入您要取的数量：<input type="text" name="number"></div>
+        </div>
+        <div class="btn">
+            <p class="btn1 btn-default"><input type="submit" value="确认" onclick="alert('取药成功')"
+                                               formaction="/take_medicine"
+                                               formmethod="post"></p>
+            <p class="btn1 btn-default"><input type="submit" value="返回上一级" name="" formaction="/back1/"
+                                               formmethod="get">
+            </p>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    医生 | 个人中心
+{% endblock %}
+{% block css %}
+    <style>
+        .main_con {
+            width: 1140px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .left_menu_con {
+            width: 200px;
+            float: left;
+        }
+
+        .left_menu_con h3 {
+            font-size: 18px;
+            line-height: 40px;
+            border-bottom: 2px solid #000;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .left_menu_con ul li {
+            line-height: 40px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .left_menu_con ul li a {
+            color: #666;
+        }
+
+        .left_menu_con ul li .active {
+            color: #ac2925;
+            font-weight: bold;
+        }
+
+        .right_content {
+            width: 900px;
+            float: right;
+            min-height: 600px;
+        }
+
+        .info_con {
+            width: 980px;
+        }
+
+        .common_title2 {
+            height: 20px;
+            line-height: 20px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .user_info_list {
+            background-color: #f9f9f9;
+            margin: 10px 0 15px;
+            padding: 10px 0;
+            height: 570px;
+
+        }
+
+        .user_info_list p {
+            line-height: 30px;
+            text-indent: 30px;
+            font-size: 14px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .user_info_list p #alter_a {
+            display: inline-block;
+            width: 100px;
+            font-size: 20px;
+            border: 1px black solid;
+            border-radius: 5px;
+            padding: 2px;
+            color: #eee;
+            background-color: dimgrey;
+        }
+
+        .user_info_list p .span1 {
+            width: 100px;
+            float: left;
+            text-align: left;
+        }
+
+        .user_info_list p .span2 {
+            display: inline-block;
+            width: 500px;
+            float: left;
+            text-align: left;
+        }
+    </style>
+{% endblock %}
+{% block head %}
+    <div id="nav2">
+        <div class="con">
+            <div class="log">在线问诊与购药平台</div>
+            <ul>
+                <li id="l1"><a href="{% url 'doctor:index' %}">在线接诊</a></li>
+            </ul>
+            <div class="act">
+                {% if request.session.islogin %}
+                    <a href="{% url 'user:logout' %}">登出</a>
+                    <a href="{% url 'doctor:user' %}">{{ request.session.username }} 的个人中心</a>
+                {% else %}
+                    <a href="{% url 'user:login' %}">登录</a>
+                    <a href="{% url 'user:register' %}">注册</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="main_con">
+        <div class="left_menu_con">
+            <h3>用户中心</h3>
+            <ul>
+                <li><a href="{% url 'doctor:user' %}" class="active">· 个人信息</a></li>
+                <li><a href="{% url 'doctor:treatment_record' %}" class="active"> 接诊记录</a></li>
+            </ul>
+        </div>
+        <div class="right_content">
+            <div class="info_con">
+                <h3 class="common_title2">基本信息</h3>
+                <div class="user_info_list">
+                    <p>
+                        <span class="span1">姓名：</span><span class="span2">{{ doctor.name }}</span>
+                    </p>
+                    <p>
+                        <span class="span1">技能：</span><span class="span2">{{ doctor.skill }}</span>
+                    </p>
+                    <p>
+                        <span class="span1">科室：</span><span class="span2">{{ doctor.department }}</span>
+                    </p>
+                    <p>
+                        <span class="span1">症状标签：</span><span class="span2">{{ doctor.symptom }}</span>
+                    </p>
+                    <p>
+                        <span class="span1">个人描述：</span><span class="span2">{{ doctor.introduce }}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

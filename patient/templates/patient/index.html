@@ -1,0 +1,285 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    在线问诊与购药平台
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/yiyuan_file.css' %}">
+{% endblock %}
+{% block content %}
+    <!--标题栏结束-->
+    <!--行业痛点-->
+    <div class='hy_tongdian'>
+        <div class="cen_box">
+            <div class="hy_title">疾病百科</div>
+            <div class="hy_title_small">为您提供权威、靠谱、便捷的就医查询功能</div>
+            <!--4个-->
+            <div class='hy_tab flex_between' id="nav">
+                <div class='hy_wx_item active hy_class'>内科</div>
+                <div class='hy_wx_item hy_class'>外科</div>
+                <div class='hy_wx_item hy_class'>儿科</div>
+                <div class='hy_wx_item hy_class'>传染科</div>
+            </div>
+            <!--4个-->
+            <div id="contentBox">
+                <!--四个痛点切换 001-->
+                <div class="xianshi01 box">
+                    <div class='hy_qieguan flex_between'>
+                        <div class='hy_left_pic'>
+                            <img src="static/picture/hangyetongdian_bg.png" class="hy_left_topimg">
+                            <img src="static/picture/hytd_bg_icon.png" class="hy_left_botimg">
+                        </div>
+                        <div class="hy_right_text">
+                            <div class="hy_right_item">
+                                （1）心房颤动：心房颤动是一种常见的快速心律失常，60岁以上的人有1%出现房颤，随着年龄增长发生率成倍增加。其中无器质性心脏病患者占3%～11%。Framingham研究发现房颤患者死亡率较无房颤者高1.5～1.9倍。
+                            </div>
+                            <div class="hy_right_item">（2）高血压：高血压是最常见的慢性病，也是心脑血管病最主要的危险因素，脑卒中、心肌梗死、心力衰竭及慢性肾脏病是其主要并发症。
+                            </div>
+                            <!--立即咨询-->
+                            <a href="javascript:;" target="_blank">
+                                <div class="hy_zixun">马上获取解决方案 <img src="static/picture/lijizixun_gengduo_icon.png"
+                                                                    class="jvzhong_pic"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!--四个痛点切换001-->
+                <!--四个痛点切换 002-->
+                <div class="box">
+                    <div class='hy_qieguan flex_between'>
+                        <div class='hy_left_pic'>
+                            <img src="static/picture/hangyetongdian_bg_er_icon.png" class="hy_left_topimg">
+                            <img src="static/picture/hytd_bg_icon.png" class="hy_left_botimg">
+                        </div>
+                        <div class="hy_right_text">
+                            <div class="hy_right_item">
+                                （1）骨质增生：骨质增生症多发于中年以上。一般认为由于中年以后体质虚弱及退行性变；长期站立或行走及长时间的持于某种姿势，由于肌肉的牵拉或撕脱、出血，血肿机化，形成刺状或唇样的骨质增生；骨刺对软组织产生机械性的刺激和外伤后软组织损伤、出血、肿胀而致。
+                            </div>
+                            <div class="hy_right_item">
+                                （2）腰肌劳损：又称功能性腰痛、慢性下腰损伤、腰臀肌筋膜炎等，实为腰部肌肉及其附着点筋膜或骨膜的慢性损伤性炎症，是腰痛的常见原因之一，主要症状是腰或腰骶部胀痛、酸痛，如日间劳累加重，为临床常见病，多发病，发病因素较多。
+                            </div>
+                            <!--立即咨询-->
+                            <a href="javascript:;" target="_blank">
+                                <div class="hy_zixun">马上获取解决方案 <img src="static/picture/lijizixun_gengduo_icon.png"
+                                                                    class="jvzhong_pic"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!--四个痛点切换002-->
+                <!--四个痛点切换 003-->
+                <div class="box">
+                    <div class='hy_qieguan flex_between'>
+                        <div class='hy_left_pic'>
+                            <img src="static/picture/hangyetongdian_bg_san_icon.png" class="hy_left_topimg">
+                            <img src="static/picture/hytd_bg_icon.png" class="hy_left_botimg">
+                        </div>
+                        <div class="hy_right_text">
+                            <div class="hy_right_item">
+                                儿童多动症，多动综合征（hyperkinetic syndrome of
+                                childhood）是一种常见的儿童行为异常问题，又称脑功能轻微失调或轻微脑功能障碍综合征（minimal brain
+                                dysfunction,MBD）或注意缺陷障碍（attention deficiency
+                                disorder,A.D.D.）。这类患儿的智能正常或基本正常，但学习、行为及情绪方面有缺陷，表现为注意力不易集中，注意短暂，活动过多，情绪易冲动以致影响学习成绩等。
+                            </div>
+                            <!--立即咨询-->
+                            <a href="javascript:;" target="_blank">
+                                <div class="hy_zixun">马上获取解决方案 <img src="static/picture/lijizixun_gengduo_icon.png"
+                                                                    class="jvzhong_pic"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!--四个痛点切换003-->
+                <!--四个痛点切换 004-->
+                <div class="box">
+                    <div class='hy_qieguan flex_between'>
+                        <div class='hy_left_pic'>
+                            <img src="static/picture/hangyetongdian_bg_si_icon.png" class="hy_left_topimg">
+                            <img src="static/picture/hytd_bg_icon.png" class="hy_left_botimg">
+                        </div>
+                        <div class="hy_right_text">
+                            <div class="hy_right_item">
+                                （1）甲型病毒性肝炎(viral hepatitis
+                                A，简称甲型肝炎)系由甲型肝炎病毒(HAV)引起的急性肝脏炎症，主要经粪-口途径传播，好发于儿童及青少年，主要表现为食欲减退、恶心呕吐，乏力、肝大及肝功异常，病初常有发热，临床经过常呈自限性，绝大多数患者在数周内可恢复正常。
+                            </div>
+                            <!--立即咨询-->
+                            <a href="javascript:;" target="_blank">
+                                <div class="hy_zixun">马上获取解决方案 <img src="static/picture/lijizixun_gengduo_icon.png"
+                                                                    class="jvzhong_pic"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!--四个痛点切换004-->
+            </div>
+        </div>
+    </div>
+    <!--行业痛点-->
+    <!-- 倒数第三模块 -->
+    <a href="javascript:;" target="_blank">
+        <div class="rld_dsdsmk">
+            <img src="static/picture/ywjiagou_icon.png" alt="">
+        </div>
+    </a>
+    <!-- 倒数第三模块 -->
+
+    <!--医疗健康定制开发，助力企业迅猛发展。-->
+    <div class="about_max">
+        <div class="cen_box">
+            <div class="hy_title">精选文章！</div>
+            <div class="hy_title_small" style="margin-bottom: 30px;">关于智慧健康我们有更多的解决方案</div>
+            <!--每组样式 -左-->
+            <div class="about_style_item flex_between">
+                <div class="about_text_box about_text_box_right">
+                    <div class="about_text_box_title">
+                        <img src="static/picture/zxwz_biaoti_icon.png" alt="">
+                        一篇关于医疗行业的文章
+                    </div>
+                    <div class="about_text_box_hei">图文问诊、免排队、免挂号、省时省力极速沟通</div>
+                    <div class="about_text_box_content">1.在线交流、足不出户和医生建立联系。</div>
+                    <div class="about_text_box_content">2.很多患者诉苦抱怨来一次医院的的成本太高、省时省力在线跟进疗程、根据需求调整用药治疗方案、方便高效。</div>
+                    <div class="about_text_box_content">3.不用被医院紧张的气氛搞的十分忧虑害怕，小病不用跑到大医院就能得到及时就诊，可以及时得到全国各地三甲医院优秀医生的回复。
+                    </div>
+                </div>
+            </div>
+
+            <div class="about_style_item flex_between">
+                <div class="about_text_box about_text_box_right">
+                    <div class="about_text_box_title">
+                        <img src="static/picture/zxwz_biaoti_icon.png" alt="">
+                        在线问诊
+                    </div>
+                    <div class="about_text_box_hei">图文问诊、免排队、免挂号、省时省力极速沟通</div>
+                    <div class="about_text_box_content">1.在线交流、足不出户和医生建立联系。</div>
+                    <div class="about_text_box_content">2.很多患者诉苦抱怨来一次医院的的成本太高、省时省力在线跟进疗程、根据需求调整用药治疗方案、方便高效。</div>
+                    <div class="about_text_box_content">3.不用被医院紧张的气氛搞的十分忧虑害怕，小病不用跑到大医院就能得到及时就诊，可以及时得到全国各地三甲医院优秀医生的回复。
+                    </div>
+                </div>
+            </div>
+
+            <div class="about_style_item flex_between">
+                <div class="about_text_box about_text_box_right">
+                    <div class="about_text_box_title">
+                        <img src="static/picture/zxwz_biaoti_icon.png" alt="">
+                        在线问诊
+                    </div>
+                    <div class="about_text_box_hei">图文问诊、免排队、免挂号、省时省力极速沟通</div>
+                    <div class="about_text_box_content">1.在线交流、足不出户和医生建立联系。</div>
+                    <div class="about_text_box_content">2.很多患者诉苦抱怨来一次医院的的成本太高、省时省力在线跟进疗程、根据需求调整用药治疗方案、方便高效。</div>
+                    <div class="about_text_box_content">3.不用被医院紧张的气氛搞的十分忧虑害怕，小病不用跑到大医院就能得到及时就诊，可以及时得到全国各地三甲医院优秀医生的回复。
+                    </div>
+                </div>
+            </div>
+
+            <div class="about_style_item flex_between">
+                <div class="about_text_box about_text_box_right">
+                    <div class="about_text_box_title">
+                        <img src="static/picture/zxwz_biaoti_icon.png" alt="">
+                        在线问诊
+                    </div>
+                    <div class="about_text_box_hei">图文问诊、免排队、免挂号、省时省力极速沟通</div>
+                    <div class="about_text_box_content">1.在线交流、足不出户和医生建立联系。</div>
+                    <div class="about_text_box_content">2.很多患者诉苦抱怨来一次医院的的成本太高、省时省力在线跟进疗程、根据需求调整用药治疗方案、方便高效。</div>
+                    <div class="about_text_box_content">3.不用被医院紧张的气氛搞的十分忧虑害怕，小病不用跑到大医院就能得到及时就诊，可以及时得到全国各地三甲医院优秀医生的回复。
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--医疗健康定制开发，助力企业迅猛发展。 蓝背景结束-->
+    <!--医疗健康定制开发，助力企业迅猛发展。 白背景结束-->
+
+
+    <!--医疗健康定制开发，助力企业迅猛发展。-->
+    <div class='title_style mar_top_fu'>
+        <div class='title_top'>在线问诊，在线购药，助力医疗事业迅猛发展。</div>
+        <a href="#" target="_blank">
+            <div class='title_btn'>助力平台</div>
+        </a>
+    </div>
+    <!--医疗健康定制开发，助力企业迅猛发展。-->
+    <!-- 后加 -->
+    <div class="rld_hezuohuoban" style="background: #fff;">
+        <div class="rld_wid">
+            <div class="rld_bt">
+                <p>医疗系统开发功能</p>
+                <span>行业权威为您打造专属服务</span>
+            </div>
+            <div class="rld_flex">
+                <!-- 1 -->
+                <div class="rld_box_houjia ">
+                    <p><img src="static/picture/1.png" alt=""></p>
+                    <h4>在线药房</h4>
+                    <p class="wenzi">患者在线上传医生开具的处方，足不出户就可实现互联网购药。</p>
+                </div>
+                <!-- 2 -->
+                <div class="rld_box_houjia ">
+                    <p><img src="static/picture/2.png" alt=""></p>
+                    <h4>就医指南</h4>
+                    <p class="wenzi">权威专家视频访谈，平台围观精彩医患问答，找到你的专属看病攻略。</p>
+                </div>
+                <!-- 3 -->
+                <div class="rld_box_houjia ">
+                    <p><img src="static/picture/3.png" alt=""></p>
+                    <h4>专家转诊</h4>
+                    <p class="wenzi">以专家团队形式为用户提供较为精准的转诊服务，有病可医，看病无忧。</p>
+                </div>
+                <!-- 4 -->
+                <div class="rld_box_houjia ">
+                    <p><img src="static/picture/4.png" alt=""></p>
+                    <h4>在线缴费</h4>
+                    <p class="wenzi">少排队，少折腾，提供便捷的缴费服务与人性化医院服务引导。</p>
+                </div>
+            </div>
+            <!-- 第二排 -->
+            <div class="rld_flex">
+                <!-- 1 -->
+                <div class="rld_box_houjia ">
+                    <p><img src="static/picture/5.png" alt=""></p>
+                    <h4>在线问诊</h4>
+                    <p class="wenzi">在线为用户解答疑难，提供合理有效的建议，当面沟通免除烦恼。</p>
+                </div>
+                <!-- 2 -->
+                <div class="rld_box_houjia ">
+                    <p><img src="static/picture/6.png" alt=""></p>
+                    <h4>医院挂号</h4>
+                    <p class="wenzi">节省挂号时间，免除排队挂号烦恼，解决挂号难的问题。</p>
+                </div>
+                <!-- 3 -->
+                <div class="rld_box_houjia ">
+                    <p><img src="static/picture/11.png" alt=""></p>
+                    <h4>疾病自查</h4>
+                    <p class="wenzi">哪里不舒服点哪里，随后进入模拟临床医生问诊流程，推断解决疾病。</p>
+                </div>
+                <!-- 4 -->
+                <div class="rld_box_houjia ">
+                    <p><img src="static/picture/12.png" alt=""></p>
+                    <h4>健康资讯</h4>
+                    <p class="wenzi">医生患者的互动平台，一人提问多人围观，让病症无处可逃。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block downjs %}
+    <!-- 版权 -->
+    <div class="rld_footer">
+        ©2020 在线问诊与购药平台 © Copyright Reserved
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            // $("#nav div").off("click").on("click", function() {
+            // 	var index = $(this).index();
+            // 	$(this).addClass("active").siblings().removeClass("active");
+            // 	$("#contentBox .box").eq(index).addClass("xianshi01").siblings().removeClass("xianshi01");
+            // });
+            $("#nav div").mouseover(function () {
+                var index = $(this).index();
+                $(this).addClass("active").siblings().removeClass("active");
+                $("#contentBox .box").eq(index).addClass("xianshi01").siblings().removeClass("xianshi01");
+            });
+        });
+    </script>
+{% endblock %}

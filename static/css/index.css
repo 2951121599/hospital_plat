@@ -1,0 +1,108 @@
+/*通用样式*/
+ul, h3, p, table, body {
+    padding: 0;
+    margin: 0;
+}
+
+/*body {*/
+/*    background-color: #ccc;*/
+/*}*/
+
+ul {
+    list-style-type: none;
+}
+
+.fl {
+    float: left;
+}
+
+/*右侧浮动*/
+.fr {
+    float: right;
+}
+
+/*清除浮动*/
+.cb {
+    clear: both;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*通用样式结束*/
+
+/*导航栏样式*/
+#nav2 {
+    width: 100%;
+    background-color: rgb(9, 195, 183);
+    color: #fff;
+    /*固定位置 防止覆盖*/
+    position: fixed;
+    /*top: 0;*/
+    z-index: 9;
+}
+
+#nav2 a {
+    color: #fff;
+}
+
+#nav2 .con {
+    width: 1140px;
+    /*水平居中*/
+    margin: 0 auto;
+    /*包裹浮动元素*/
+    overflow: hidden;
+    /*高度*/
+    height: 80px;
+    /*垂直居中*/
+    line-height: 80px;
+}
+
+#nav2 .con .log {
+    /*浮动左侧对齐*/
+    float: left;
+    /*设置字体大小*/
+    font-size: 28px;
+    /*右边距*/
+    margin-right: 100px;
+}
+
+#nav2 .con ul {
+    /*浮动左侧对齐*/
+    float: left;
+    /*包裹浮动元素li*/
+    overflow: hidden;
+}
+
+#nav2 .con ul li {
+    /*浮动左侧对齐*/
+    float: left;
+    /*宽度*/
+    width: 80px;
+    /*文字居中*/
+    text-align: center;
+    /*距右侧li*/
+    margin-right: 20px;
+}
+
+/*控制登录注册*/
+#nav2 .con .act {
+    /*浮动到最右侧*/
+    float: right;
+}
+
+#nav2 .con .act a {
+    margin-right: 10px;
+}
+
+/*获取焦点 改变颜色*/
+#nav2 .focus {
+    color: #def071;
+}
+
+
+/*导航栏样式结束*/
+
+
+

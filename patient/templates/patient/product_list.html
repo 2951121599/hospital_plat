@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    药品列表页
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="{% static 'css/patient/products.css' %}">
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="../static/js/jquery.page.js"></script>
+{% endblock %}
+{% block content %}
+    <!-- -->
+    <div class="store_action">
+        <div class="store_action_left">
+            <div class="store_action_left_content">
+                <div id="plist">
+                    <div class="salc_top">
+                        全部药品
+                    </div>
+
+                    <div class="salc_content">
+                        <div class="product" id="1">
+                            <a href="#">
+                                <img src="{% static 'picture/ganmaoling.jpg' %}" alt="感冒灵">
+                            </a>
+                            <div class="addRemoveProduct">
+                                <p>
+                                    <span class="price">￥25.00</span>
+                                    <a href="#" class="title" title="感冒灵">
+                                        感冒灵
+                                    </a>
+                                </p>
+                            </div>
+
+                        </div>
+                        <div class="product" id="1">
+                            <a href="{% url 'patient:product_details' %}">
+                                <img src="{% static 'picture/weishengsu.jpg' %}" alt="维生素C">
+                            </a>
+                            <div class="addRemoveProduct">
+                                <p>
+                                    <span class="price">￥23.00</span>
+                                    <a href="{% url 'patient:product_details' %}" class="title" title="维生素C">
+                                        维生素C
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="product" id="1">
+                            <a href="#">
+                                <img src="{% static 'picture/shuanghuanglian.jpg' %}" alt="双黄连">
+                            </a>
+                            <div class="addRemoveProduct">
+                                <p>
+                                    <span class="price">￥25.00</span>
+                                    <a href="#" class="title" title="双黄连">
+                                        双黄连
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block downjs %}
+    <!-- 加载js -->
+    <script src="{% static 'js/focus.js' %}"></script>
+    <script>
+        //调用获取焦点的函数
+        getFocus($("#l3 a"))
+    </script>
+{% endblock %}

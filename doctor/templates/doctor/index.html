@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    在线问诊与购药平台 | 医生
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/yiyuan_file.css' %}">
+{% endblock %}
+{% block head %}
+    <div id="nav2">
+        <div class="con">
+            <div class="log">在线问诊与购药平台</div>
+            <ul>
+                <li id="l1"><a href="{% url 'doctor:index' %}">在线接诊</a></li>
+            </ul>
+            <div class="act">
+                {% if request.session.islogin %}
+                    <a href="{% url 'user:logout' %}">登出</a>
+                    <a href="{% url 'doctor:user' %}">{{ request.session.username }} 的个人中心</a>
+                {% else %}
+                    <a href="{% url 'user:login' %}">登录</a>
+                    <a href="{% url 'user:register' %}">注册</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>{% endblock %}
+{% block content %}
+
+    <!--医疗健康定制开发，助力企业迅猛发展。-->
+    <div class="about_max">
+        <div class="cen_box">
+            <div class="hy_title">在线接诊！</div>
+            <div class="hy_title_small" style="margin-bottom: 30px;">给病人更多的咨询回复意见</div>
+            <!--每组样式 -左-->
+            {% for question in questions %}
+                {% if question.comment %}
+                    <div class="about_style_item flex_between">
+                        <div class="about_text_box about_text_box_right">
+                            <div class="about_text_box_title">
+                                {{ question.content }}
+                            </div>
+                            <div class="about_text_box_hei">{{ question.user }}</div>
+                            <div class="about_text_box_content">{{ question.created_time }}</div>
+                            <div class="about_text_box_content">
+                                回复内容为: {{ question.comment }}
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <form action="{% url 'doctor:index' %}" method="post">
+                    <div class="about_style_item flex_between">
+                            <div class="about_text_box about_text_box_right">
+                                <div class="about_text_box_title">
+                                    {{ question.content }}
+                                    <img src="/static/media/{{ question.image_url }}" alt="" width="100px" height="50px">
+                                </div>
+                                <div>
+
+                                </div>
+                                <div class="about_text_box_hei">{{ question.user }}</div>
+                                <div class="about_text_box_content">{{ question.created_time }}</div>
+                                <input type="hidden" name="question_id" value="{{ question.id }}">
+                                <input type="hidden" name="doctor_id" value="{{ doctor_id }}">
+                                <div class="about_text_box_content">
+                                    <textarea name="comment" cols="60" rows="30"
+                                              style="height: 90px;" class="layui-textarea">
+                                    </textarea>
+                                </div>
+                                <div class="about_text_box_content">
+                                    <input type="submit" value="提交回复">
+                                </div>
+                            </div>
+                    </div>
+                        </form>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <!--医疗健康定制开发，助力企业迅猛发展。 蓝背景结束-->
+    <!--医疗健康定制开发，助力企业迅猛发展。 白背景结束-->
+
+
+    <!--医疗健康定制开发，助力企业迅猛发展。-->
+    <div class='title_style mar_top_fu'>
+        <div class='title_top'>在线接诊，在线回复，助力医疗事业迅猛发展。</div>
+        <a href="#" target="_blank">
+            <div class='title_btn'>助力平台</div>
+        </a>
+    </div>
+    <!--医疗健康定制开发，助力企业迅猛发展。-->
+
+{% endblock %}
+{% block downjs %}
+    <!-- 版权 -->
+    <div class="rld_footer">
+        ©2020 在线问诊与购药平台 © Copyright Reserved
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            // $("#nav div").off("click").on("click", function() {
+            // 	var index = $(this).index();
+            // 	$(this).addClass("active").siblings().removeClass("active");
+            // 	$("#contentBox .box").eq(index).addClass("xianshi01").siblings().removeClass("xianshi01");
+            // });
+            $("#nav div").mouseover(function () {
+                var index = $(this).index();
+                $(this).addClass("active").siblings().removeClass("active");
+                $("#contentBox .box").eq(index).addClass("xianshi01").siblings().removeClass("xianshi01");
+            });
+        });
+    </script>
+{% endblock %}
